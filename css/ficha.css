@@ -1,0 +1,7 @@
+@import url("base.css");
+@import url("layout.css");
+@import url("components.css");
+
+@import url("ficha/atributos.css");
+@import url("ficha/recursos.css");
+@import url("ficha/geral.css");
