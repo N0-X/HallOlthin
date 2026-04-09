@@ -7,8 +7,19 @@ import {
     buscarFichasGlobal
 } from "./supabase.js";
 
-let pastaAtual = null;
-let buscaCache = [];
+import {
+    abrirModal,
+    initModal,
+} from "./modal.js";
+
+import { 
+    initBusca
+} from "./busca.js";
+
+const state = {
+    pastaAtual: null,
+    buscaCache: []
+};
 
 
 // ==========================
@@ -27,12 +38,15 @@ document.addEventListener("DOMContentLoaded", () => {
         .addEventListener("click", voltarParaPastas);
 
     carregarPastas();
+
+    initModal();
 });
 
 document.addEventListener("DOMContentLoaded", async () => {
 
-    buscaCache = await buscarFichasGlobal();
+    state.buscaCache = await buscarFichasGlobal();
 
+    initBusca(state.buscaCache);
 });
 
 
@@ -95,7 +109,7 @@ async function criarNovaPasta() {
 // ==========================
 
 function selecionarPasta(pasta) {
-    pastaAtual = pasta;
+    state.pastaAtual = pasta;
 
     document.getElementById("tituloPasta").textContent = pasta.nome;
 
@@ -112,7 +126,7 @@ async function carregarFichas() {
     const lista = document.getElementById("listaFichas");
     lista.innerHTML = "";
 
-    const fichas = await listarFichas(pastaAtual.id);
+    const fichas = await listarFichas(state.pastaAtual.id);
 
     fichas.forEach(ficha => {
 
@@ -130,7 +144,7 @@ async function carregarFichas() {
 }
 
 function novaFicha() {
-    if (!pastaAtual) {
+    if (!state.pastaAtual) {
         alert("Selecione uma pasta primeiro!");
         return;
     }
@@ -147,10 +161,10 @@ function novaFicha() {
             }
         };
 
-        const nova = await criarFicha(pastaAtual.id, dados);
+        const nova = await criarFicha(state.pastaAtual.id, dados);
 
         localStorage.setItem("fichaId", nova.id);
-        localStorage.setItem("pastaId", pastaAtual.id);
+        localStorage.setItem("pastaId", state.pastaAtual.id);
 
         window.location.href = "ficha.html";
 
@@ -163,123 +177,14 @@ function novaFicha() {
 // ==========================
 
 function voltarParaPastas() {
-    pastaAtual = null;
+    state.pastaAtual = null;
     mostrarTelaPastas();
 }
 
 function abrirFicha(id) {
     localStorage.setItem("fichaId", id);
-    localStorage.setItem("pastaId", pastaAtual.id);
+    localStorage.setItem("pastaId", state.pastaAtual.id);
 
     window.location.href = "ficha.html";
 }
-
-
-// ==========================
-// BOTÃO DE CONFIRMAÇÃO DE DELETE
-// ==========================
-
-let callbackConfirmar = null;
-let usandoInput = false;
-
-function abrirModal(texto, onConfirm, usarInput = false) {
-    document.getElementById("modalTexto").textContent = texto;
-
-    const input = document.getElementById("modalInput");
-
-    usandoInput = usarInput;
-
-    if (usarInput) {
-        input.style.display = "block";
-        input.value = "";
-        input.focus();
-    } else {
-        input.style.display = "none";
-    }
-
-    callbackConfirmar = onConfirm;
-
-    document.getElementById("modalConfirm").classList.remove("hidden");
-}
-
-function fecharModal() {
-    document.getElementById("modalConfirm").classList.add("hidden");
-}
-
-document.getElementById("btnConfirmar")
-    .addEventListener("click", () => {
-        const input = document.getElementById("modalInput");
-
-        if (callbackConfirmar) {
-            callbackConfirmar(usandoInput ? input.value : null);
-        }
-
-        fecharModal();
-    });
-
-document.getElementById("btnCancelar")
-    .addEventListener("click", fecharModal);
-
     
-// ==========================
-// BUSCA DE FICHAS
-// ==========================
-
-document.getElementById("buscaGlobal")
-    .addEventListener("input", (e) => {
-
-        const termo = e.target.value.toLowerCase();
-        const resultadoDiv = document.getElementById("resultadoBusca");
-
-        if (!termo) {
-            resultadoDiv.innerHTML = "";
-            return;
-        }
-
-        const filtradas = buscaCache.filter(f =>
-            f.nome.toLowerCase().includes(termo)
-        );
-
-        renderBuscaGlobal(filtradas);
-    });
-
-function renderBuscaGlobal(fichas) {
-    const div = document.getElementById("resultadoBusca");
-    div.innerHTML = "";
-
-    fichas.forEach(ficha => {
-
-        const card = document.createElement("div");
-        card.classList.add("card");
-
-        const img = document.createElement("img");
-        img.classList.add("preview");
-
-        // 🔥 AQUI A MÁGICA
-        const src = ficha.dados?.foto?.valor;
-        img.src = src || "https://via.placeholder.com/50";
-
-        const info = document.createElement("div");
-
-        const nome = document.createElement("div");
-        nome.textContent = ficha.nome;
-
-        const pasta = document.createElement("small");
-        pasta.textContent = `📁 ${ficha.pastas?.nome || "Sem pasta"}`;
-
-        info.appendChild(nome);
-        info.appendChild(pasta);
-
-        card.appendChild(img);
-        card.appendChild(info);
-
-        card.addEventListener("click", () => {
-            localStorage.setItem("fichaId", ficha.id);
-            localStorage.setItem("pastaId", ficha.pasta_id);
-
-            window.location.href = "ficha.html";
-        });
-
-        div.appendChild(card);
-    });
-}
