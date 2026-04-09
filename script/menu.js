@@ -152,7 +152,7 @@ function novaFicha() {
         localStorage.setItem("fichaId", nova.id);
         localStorage.setItem("pastaId", pastaAtual.id);
 
-        window.location.href = "index.html";
+        window.location.href = "ficha.html";
 
     }, true);
 }
@@ -171,7 +171,7 @@ function abrirFicha(id) {
     localStorage.setItem("fichaId", id);
     localStorage.setItem("pastaId", pastaAtual.id);
 
-    window.location.href = "index.html";
+    window.location.href = "ficha.html";
 }
 
 
@@ -277,7 +277,7 @@ function renderBuscaGlobal(fichas) {
             localStorage.setItem("fichaId", ficha.id);
             localStorage.setItem("pastaId", ficha.pasta_id);
 
-            window.location.href = "index.html";
+            window.location.href = "ficha.html";
         });
 
         div.appendChild(card);
