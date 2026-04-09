@@ -1,4 +1,5 @@
 import { listarPastas, criarPasta } from "../supabase.js";
+import { abrirModalEdicaoPasta } from "./modal.js";
 
 export async function carregarPastas(selecionarPasta) {
     const lista = document.getElementById("listaPastas");
@@ -18,7 +19,24 @@ function criarElementoPasta(pasta, selecionarPasta) {
     btn.textContent = pasta.nome;
     btn.addEventListener("click", () => selecionarPasta(pasta));
 
+    const btnEditar = document.createElement("button");
+    btnEditar.textContent = "⚙️";
+
+    btnEditar.addEventListener("click", (e) => {
+        e.stopPropagation();
+
+        abrirModalEdicaoPasta(pasta, {
+            onSalvar: async (novoNome) => {
+                console.log("Salvar", novoNome);
+            },
+            onDeletar: async () => {
+                console.log("Deletar", pasta.id);
+            }
+        });
+    });
+
     container.appendChild(btn);
+    container.appendChild(btnEditar);
 
     return container;
 }
@@ -34,3 +52,4 @@ export async function criarNovaPasta() {
 
     await criarPasta(nome, codigo || null);
 }
+

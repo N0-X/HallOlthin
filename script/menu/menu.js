@@ -46,3 +46,4 @@ function selecionarPasta(pasta) {
     carregarFichas(state, (id) => abrirFicha(state, id));
     mostrarTelaFichas();
 }
+
