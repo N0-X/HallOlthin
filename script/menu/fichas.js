@@ -1,4 +1,4 @@
-import { listarFichas, criarFicha } from "./supabase.js";
+import { listarFichas, criarFicha } from "../supabase.js";
 
 export async function carregarFichas(state, abrirFicha) {
     const lista = document.getElementById("listaFichas");

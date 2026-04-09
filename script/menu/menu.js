@@ -1,4 +1,4 @@
-import { buscarFichasGlobal } from "./supabase.js";
+import { buscarFichasGlobal } from "../supabase.js";
 
 import { carregarPastas, criarNovaPasta } from "./pastas.js";
 import { carregarFichas, novaFicha, abrirFicha } from "./fichas.js";

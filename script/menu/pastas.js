@@ -1,4 +1,4 @@
-import { listarPastas, criarPasta } from "./supabase.js";
+import { listarPastas, criarPasta } from "../supabase.js";
 
 export async function carregarPastas(selecionarPasta) {
     const lista = document.getElementById("listaPastas");

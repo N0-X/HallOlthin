@@ -2,7 +2,7 @@ import {
     atualizarFicha,
     buscarFicha,
     deletarFicha
-} from "./supabase.js";
+} from "../supabase.js";
 
 import { 
     coletarDados,
