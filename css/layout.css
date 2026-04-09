@@ -1,0 +1,22 @@
+.container {
+    display: flex;
+}
+
+.sidebar {
+    width: 120px;
+    height: 100vh;
+    background-color: #333;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    margin-left: 120px;
+    padding: 20px;
+    width: 100%;
+}
+
+.tabcontent {
+    display: none;
+}

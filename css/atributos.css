@@ -1,0 +1,82 @@
+.atributo {
+    margin-bottom: 10px;
+}
+
+.toggle {
+    width: 100%;
+    padding: 10px;
+    background: #666;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.pericias {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    margin-left: 10px;
+}
+
+.pericias.show {
+    max-height: 200px;
+}
+
+/* HEADER */
+.atributoHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background: #666;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.atributoHeader:hover {
+    background: #777;
+}
+
+.atributoHeader .nome {
+    flex: 1;
+}
+
+.atributoHeader input {
+    width: 60px;
+    text-align: center;
+    margin-right: 10px;
+}
+
+.modificador {
+    width: 40px;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* PERICIAS */
+.pericia {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background: #ddd;
+    padding: 8px;
+    margin-top: 5px;
+    border-radius: 5px;
+}
+
+.pericia .nome {
+    flex: 1;
+}
+
+.pericia input {
+    width: 60px;
+    text-align: center;
+}
+
+.pericia .modificador {
+    width: 40px;
+    text-align: center;
+    font-weight: bold;
+}

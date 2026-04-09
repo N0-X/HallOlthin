@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Ficha RPG</title>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+        <button id="btnVoltar">Voltar</button>
+        <button class="tablinks" onclick="openTab(event, 'Geral')">Geral</button>
+        <button class="tablinks" onclick="openTab(event, 'Recursos')">Recursos</button>
+        <button class="tablinks" onclick="openTab(event, 'Atributos')">Atributos</button>
+        <button class="tablinks" onclick="openTab(event, 'Inventario')">Inventário</button>
+        <button class="tablinks" onclick="openTab(event, 'CoisasF')">Coisas Finais</button>
+    </div>
+
+    <!-- CONTEÚDO -->
+    <div class="content">
+
+        <!-- GERAL -->
+        <div id="Geral" class="tabcontent">
+
+            <h1>Geral</h1>
+
+            <!-- HEADER DO PERSONAGEM -->
+            <div class="char-header">
+
+                <div class="char-img">
+                    <img id="previewImagem">
+                    <input type="file" id="inputImagem">
+                </div>
+
+                <div class="char-info">
+                    <label>Nome</label>
+                    <input type="text" class="save" data-key="nome">
+
+                    <label>Classe</label>
+                    <input type="text" class="save" data-key="classe">
+
+                    <label>Raça</label>
+                    <input type="text" class="save" data-key="raca">
+                </div>
+
+            </div>
+
+            <!-- PROGRESSO -->
+            <h2>Progresso</h2>
+            <div class="grid-2">
+
+                <div>
+                    <label>Nível</label>
+                    <input type="number" class="save" data-key="nivel">
+                </div>
+
+                <div>
+                    <label>XP</label>
+                    <input type="number" class="save" data-key="xp">
+                </div>
+
+            </div>
+
+            <!-- DETALHES -->
+            <h2>Detalhes</h2>
+            <div class="grid-3">
+
+                <div>
+                    <label>Idade</label>
+                    <input type="number" class="save" data-key="idade">
+                </div>
+
+                <div>
+                    <label>Altura</label>
+                    <input type="text" class="save" data-key="altura">
+                </div>
+
+                <div>
+                    <label>Peso</label>
+                    <input type="text" class="save" data-key="peso">
+                </div>
+
+            </div>
+
+            <!-- LORE -->
+            <h2>História</h2>
+            <textarea class="save" data-key="historia"></textarea>
+
+            <!-- EXTRA -->
+            <h2>Anotações</h2>
+            <textarea class="save" data-key="notas"></textarea>
+
+        </div>
+
+        <!-- RECURSOS -->
+        <div id="Recursos" class="tabcontent">
+            <h1>Recursos</h1>
+
+            <!-- RECURSOS BÁSICOS -->
+            <div class="resources-grid">
+
+                <!-- VIDA -->
+                <div class="resource" data-type="vida">
+
+                    <div class="resource-title">Vida</div>
+
+                    <div class="resource-bar">
+                        <div class="resource-damage"></div>
+                        <div class="resource-fill"></div>
+
+                        <div class="resource-text">
+                            <input type="number" class="save resource-atual" data-key="vida.atual" value="10">
+                            <span>/</span>
+                            <input type="number" class="save resource-max" data-key="vida.max" value="10">
+                        </div>
+                    </div>
+
+                    <div class="resource-controls">
+                        <button class="heal">Cura</button>
+                        <button class="damage">Dano</button>
+                    </div>
+                </div>
+
+                <!-- ARMADURA -->
+                <div class="resource" data-type="armadura">
+
+                    <div class="resource-title">Armadura</div>
+
+                    <div class="resource-bar">
+                        <div class="resource-damage"></div>
+                        <div class="resource-fill"></div>
+
+                        <div class="resource-text">
+                            <input type="number" class="save resource-atual" data-key="armadura.atual" value="10">
+                            <span>/</span>
+                            <input type="number" class="save resource-max" data-key="armadura.max" value="10">
+                        </div>
+                    </div>
+
+                    <div class="resource-controls">
+                        <button class="heal">Cura</button>
+                        <button class="damage">Dano</button>
+                    </div>
+                </div>
+
+                <!-- VONTADE -->
+                <div class="resource" data-type="vontade">
+
+                    <div class="resource-title">Vontade</div>
+
+                    <div class="resource-bar">
+                        <div class="resource-damage"></div>
+                        <div class="resource-fill"></div>
+
+                        <div class="resource-text">
+                            <input type="number" class="save resource-atual" data-key="vontade.atual" value="10">
+                            <span>/</span>
+                            <input type="number" class="save resource-max" data-key="vontade.max" value="10">
+                        </div>
+                    </div>
+
+                    <div class="resource-controls">
+                        <button class="heal">Recuperar</button>
+                        <button class="damage">Gastar</button>
+                    </div>
+                </div>
+
+                <!-- MAGIA -->
+                <div class="resource" data-type="magia">
+
+                    <div class="resource-title">Magia</div>
+
+                    <div class="resource-bar">
+                        <div class="resource-damage"></div>
+                        <div class="resource-fill"></div>
+
+                        <div class="resource-text">
+                            <input type="number" class="save resource-atual" data-key="magia.atual" value="10">
+                            <span>/</span>
+                            <input type="number" class="save resource-max" data-key="magia.max" value="10">
+                        </div>
+                    </div>
+
+                    <div class="resource-controls">
+                        <button class="heal">Recuperar</button>
+                        <button class="damage">Gastar</button>
+                    </div>
+                </div>
+
+            </div>
+
+            <hr>
+
+            <h1>Recursos Especiais</h1>
+
+            <!-- RECURSOS ESPECIAIS -->
+            <div class="resources-grid">
+
+                <!-- ENERGIA -->
+                <div class="resource" data-type="energia">
+
+                    <div class="resource-title">Energia</div>
+
+                    <div class="resource-bar">
+                        <div class="resource-damage"></div>
+                        <div class="resource-fill"></div>
+
+                        <div class="resource-text">
+                            <input type="number" class="save resource-atual" data-key="energia.atual" value="10">
+                            <span>/</span>
+                            <input type="number" class="save resource-max" data-key="energia.max" value="10">
+                        </div>
+                    </div>
+
+                    <div class="resource-controls">
+                        <button class="heal">Recuperar</button>
+                        <button class="damage">Gastar</button>
+                    </div>
+                </div>
+
+                <!-- ESPERANÇA -->
+                <div class="resource" data-type="esperanca">
+
+                    <div class="resource-title">Esperança</div>
+
+                    <div class="resource-bar">
+                        <div class="resource-damage"></div>
+                        <div class="resource-fill"></div>
+
+                        <div class="resource-text">
+                            <input type="number" class="save resource-atual" data-key="esperanca.atual" value="10">
+                            <span>/</span>
+                            <input type="number" class="save resource-max" data-key="esperanca.max" value="10">
+                        </div>
+                    </div>
+
+                    <div class="resource-controls">
+                        <button class="heal">Recuperar</button>
+                        <button class="damage">Gastar</button>
+                    </div>
+                </div>
+
+                <!-- DOR -->
+                <div class="resource" data-type="dor">
+
+                    <div class="resource-title">Dor</div>
+
+                    <div class="resource-bar">
+                        <div class="resource-damage"></div>
+                        <div class="resource-fill"></div>
+
+                        <div class="resource-text">
+                            <input type="number" class="save resource-atual" data-key="dor.atual" value="10">
+                            <span>/</span>
+                            <input type="number" class="save resource-max" data-key="dor.max" value="10">
+                        </div>
+                    </div>
+
+                    <div class="resource-controls">
+                        <button class="heal">Recuperar</button>
+                        <button class="damage">Gastar</button>
+                    </div>
+                </div>
+
+                <!-- PASSOS DA MORTE -->
+                <div class="resource" data-type="morte">
+
+                    <div class="resource-title">Passos da Morte</div>
+
+                    <div class="resource-bar">
+                        <div class="resource-damage"></div>
+                        <div class="resource-fill"></div>
+
+                        <div class="resource-text">
+                            <input type="number" class="save resource-atual" data-key="morte.atual" value="10">
+                            <span>/</span>
+                            <input type="number" class="save resource-max" data-key="morte.max" value="10">
+                        </div>
+                    </div>
+
+                    <div class="resource-controls">
+                        <button class="heal">Recuperar</button>
+                        <button class="damage">Gastar</button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ATRIBUTOS -->
+        <div id="Atributos" class="tabcontent">
+            <h1>Atributos</h1>
+
+            <!-- FORÇA -->
+            <div class="atributo">
+                <div class="atributoHeader">
+                    <span class="nome">Força</span>
+                    <input type="number" class="save atributo-bruto" data-key="FOR.valor">
+                    <span class="modificador">+0</span>
+                </div>
+
+                <div class="pericias">
+                    <div class="pericia"><span class="nome">Força nas Mãos</span><input type="number" class="save pericia-bruto" data-key="FOR.ForMao"><span class="modificador">+0</span></div>
+                    <div class="pericia"><span class="nome">Explosão</span><input type="number" class="save pericia-bruto" data-key="FOR.explosao"><span class="modificador">+0</span></div>
+                    <div class="pericia"><span class="nome">Carregar</span><input type="number" class="save pericia-bruto" data-key="FOR.carregar"><span class="modificador">+0</span></div>
+                    <div class="pericia"><span class="nome">Brutalidade</span><input type="number" class="save pericia-bruto" data-key="FOR.brutalidade"><span class="modificador">+0</span></div>
+                </div>
+            </div>
+
+            <!-- DESTREZA -->
+            <div class="atributo">
+                <div class="atributoHeader">
+                    <span class="nome">Destreza</span>
+                    <input type="number" class="save atributo-bruto" data-key="DES.valor">
+                    <span class="modificador">+0</span>
+                </div>
+
+                <div class="pericias">
+                    <div class="pericia"><span class="nome">Delicadeza</span><input type="number" class="save pericia-bruto" data-key="DES.delicadeza"><span class="modificador">+0</span></div>
+                    <div class="pericia"><span class="nome">Acrobacia</span><input type="number" class="save pericia-bruto" data-key="DES.acrobacia"><span class="modificador">+0</span></div>
+                    <div class="pericia"><span class="nome">Reação</span><input type="number" class="save pericia-bruto" data-key="DES.reacao"><span class="modificador">+0</span></div>
+                    <div class="pericia"><span class="nome">Rapidez</span><input type="number" class="save pericia-bruto" data-key="DES.rapidez"><span class="modificador">+0</span></div>
+                </div>
+            </div>
+
+            <!-- COGNIÇÃO -->
+            <div class="atributo">
+                <div class="atributoHeader">
+                    <span class="nome">Cognição</span>
+                    <input type="number" class="save atributo-bruto" data-key="COG.valor">
+                    <span class="modificador">+0</span>
+                </div>
+
+                <div class="pericias">
+                    <div class="pericia"><span class="nome">Adestrar</span><input type="number" class="save pericia-bruto" data-key="COG.adestrar"><span class="modificador">+0</span></div>
+                    <div class="pericia"><span class="nome">Alquímicos</span><input type="number" class="save pericia-bruto" data-key="COG.alquimicos"><span class="modificador">+0</span></div>
+                    <div class="pericia"><span class="nome">Arcanos</span><input type="number" class="save pericia-bruto" data-key="COG.arcanos"><span class="modificador">+0</span></div>
+                    <div class="pericia"><span class="nome">Históricos</span><input type="number" class="save pericia-bruto" data-key="COG.historicos"><span class="modificador">+0</span></div>
+                    <div class="pericia"><span class="nome">Ofício</span><input type="number" class="save pericia-bruto" data-key="COG.oficio"><span class="modificador">+0</span></div>
+                </div>
+            </div>
+
+            <!-- SABEDORIA -->
+            <div class="atributo">
+                <div class="atributoHeader">
+                    <span class="nome">Sabedoria</span>
+                    <input type="number" class="save atributo-bruto" data-key="SAB.valor">
+                    <span class="modificador">+0</span>
+                </div>
+
+                <div class="pericias">
+                    <div class="pericia"><span class="nome">Intuir</span><input type="number" class="save pericia-bruto" data-key="SAB.intuir"><span class="modificador">+0</span></div>
+                    <div class="pericia"><span class="nome">Força Mental</span><input type="number" class="save pericia-bruto" data-key="SAB.ForMen"><span class="modificador">+0</span></div>
+                    <div class="pericia"><span class="nome">Sobreviver</span><input type="number" class="save pericia-bruto" data-key="SAB.sobreviver"><span class="modificador">+0</span></div>
+                    <div class="pericia"><span class="nome">Fé</span><input type="number" class="save pericia-bruto" data-key="SAB.fe"><span class="modificador">+0</span></div>
+                    <div class="pericia"><span class="nome">Sentidos</span><input type="number" class="save pericia-bruto" data-key="SAB.sentidos"><span class="modificador">+0</span></div>
+                </div>
+            </div>
+
+            <!-- CARISMA -->
+            <div class="atributo">
+                <div class="atributoHeader">
+                    <span class="nome">Carisma</span>
+                    <input type="number" class="save atributo-bruto" data-key="CAR.valor">
+                    <span class="modificador">+0</span>
+                </div>
+
+                <div class="pericias">
+                    <div class="pericia"><span class="nome">Persuadir</span><input type="number" class="save pericia-bruto" data-key="CAR.persuadir"><span class="modificador">+0</span></div>
+                    <div class="pericia"><span class="nome">Atuar</span><input type="number" class="save pericia-bruto" data-key="CAR.atuar"><span class="modificador">+0</span></div>
+                    <div class="pericia"><span class="nome">Adquirir Informações</span><input type="number" class="save pericia-bruto" data-key="CAR.AdqInfo"><span class="modificador">+0</span></div>
+                    <div class="pericia"><span class="nome">Intimidar</span><input type="number" class="save pericia-bruto" data-key="CAR.intimidar"><span class="modificador">+0</span></div>
+                </div>
+            </div>
+
+            <!-- CONSTITUIÇÃO -->
+            <div class="atributo">
+                <div class="atributoHeader">
+                    <span class="nome">Constituição</span>
+                    <input type="number" class="save atributo-bruto" data-key="CON.valor">
+                    <span class="modificador">+0</span>
+                </div>
+
+                <div class="pericias">
+                    <div class="pericia"><span class="nome">Resistir a Físico</span><input type="number" class="save pericia-bruto" data-key="CON.ResFis"><span class="modificador">+0</span></div>
+                    <div class="pericia"><span class="nome">Resistir a Mágico</span><input type="number" class="save pericia-bruto" data-key="CON.ResMag"><span class="modificador">+0</span></div>
+                    <div class="pericia"><span class="nome">Resistir a Morte</span><input type="number" class="save pericia-bruto" data-key="CON.ResMor"><span class="modificador">+0</span></div>
+                    <div class="pericia"><span class="nome">Segurar Fôlego</span><input type="number" class="save pericia-bruto" data-key="CON.SegFol"><span class="modificador">+0</span></div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- INVENTARIO -->
+        <div id="Inventario" class="tabcontent">
+            <h1>Inventário</h1>
+        </div>
+
+        <!-- DETALHES-->
+        <div id="CoisasF" class="tabcontent">
+            <h1>Coisa Finais</h1>
+            
+            <button id="btnBaixarFicha">Exportar ficha Completa</button>
+            <input type="file" id="carregarArquivo">
+            <button id="btnCarregarFicha">Carregar ficha</button>
+            <button id="btnDeletarFicha">🗑️ Deletar Ficha</button>
+
+        </div>
+
+    </div>
+</div>
+
+<div id="modalConfirm" class="modal hidden">
+    <div class="modal-box">
+
+        <p id="modalTexto">Tem certeza?</p>
+
+        <input id="modalInput" placeholder="Digite algo..." style="display:none; width:100%; margin-top:10px;">
+
+        <div class="modal-botoes">
+            <button id="btnCancelar">Cancelar</button>
+            <button id="btnConfirmar">Confirmar</button>
+        </div>
+
+    </div>
+</div>
+
+<div id="modalValor" class="modal hidden">
+    <div class="modal-box">
+
+        <p id="modalTitulo">Valor</p>
+
+        <input id="modalValorInput" type="number" placeholder="Digite um valor">
+
+        <div class="modal-botoes">
+            <button id="modalCancelar">Cancelar</button>
+            <button id="modalConfirmarValor">Confirmar</button>
+        </div>
+
+    </div>
+</div>
+
+<script src="script/tabs.js"></script>
+<script src="script/savedata.js"></script>
+<script src="script/recursos.js"></script>
+<script src="script/atributos.js"></script>
+<script src="script/geral.js"></script>
+<script type="module" src="script/supabase.js"></script>
+<script type="module" src="script/ficha.js"></script>
+
+</body>
+</html>

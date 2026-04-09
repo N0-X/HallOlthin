@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Menu</title>
+    <link rel="stylesheet" href="css/menu.css">
+</head>
+
+<body>
+
+<div class="menu-container">
+
+    <h1>📂 Hall Olthin</h1>
+
+    <!-- 🔍 BUSCA GLOBAL -->
+    <input id="buscaGlobal" placeholder="🔍 Buscar fichas em todas as pastas...">
+
+    <!-- RESULTADO DA BUSCA -->
+    <div id="resultadoBusca" class="grid"></div>
+
+    <!-- ==========================
+    📁 TELA DE PASTAS
+    ========================== -->
+    <div id="telaPastas">
+
+        <div class="top-bar">
+            <h2>Pastas</h2>
+
+            <div class="form-inline">
+                <input id="novaPastaNome" placeholder="Nome">
+                <input id="novoCodigo" placeholder="Código">
+                <button id="btnCriarPasta">+ Criar</button>
+            </div>
+        </div>
+
+        <div id="listaPastas" class="grid"></div>
+
+    </div>
+
+
+    <!-- ==========================
+    📂 TELA DE FICHAS
+    ========================== -->
+    <div id="telaFichas" style="display: none;">
+
+        <div class="top-bar">
+            <button id="btnVoltar">⬅</button>
+            <h2 id="tituloPasta"></h2>
+            <button id="btnNovaFicha">+ Nova Ficha</button>
+            <button id="btnEditarPasta">✏️ Editar Pasta</button>
+        </div>
+
+        <div id="listaFichas" class="grid"></div>
+
+    </div>
+
+</div>
+
+<!-- MODAL -->
+<div id="modalConfirm" class="modal hidden">
+    <div class="modal-box">
+
+        <p id="modalTexto">Tem certeza?</p>
+
+        <input id="modalInput" placeholder="Digite algo..." style="display:none; width:100%; margin-top:10px;">
+
+        <div class="modal-botoes">
+            <button id="btnCancelar">Cancelar</button>
+            <button id="btnConfirmar">Confirmar</button>
+        </div>
+
+    </div>
+</div>
+
+<script type="module" src="script/menu.js"></script>
+
+</body>
+</html>

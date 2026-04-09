@@ -1,0 +1,21 @@
+body {
+    margin: 0;
+    font-family: Arial;
+    background-color: #f4f4f4;
+}
+
+label {
+    display: block;
+    margin-top: 5px;
+}
+
+textarea {
+    width: 100%;
+    min-height: 80px;
+    resize: vertical;
+    padding: 10px;
+}
+
+h2 {
+    margin-top: 20px;
+}
