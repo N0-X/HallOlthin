@@ -1,38 +1,35 @@
-// ==========================
-// BUSCA DE FICHAS
-// ==========================
+export function initBusca(buscaCache) {
 
-document.getElementById("buscaGlobal")
-    .addEventListener("input", (e) => {
+    document.getElementById("buscaGlobal")
+        .addEventListener("input", (e) => {
 
-        const termo = e.target.value.toLowerCase();
-        const resultadoDiv = document.getElementById("resultadoBusca");
+            const termo = e.target.value.toLowerCase();
+            const resultadoDiv = document.getElementById("resultadoBusca");
 
-        if (!termo) {
-            resultadoDiv.innerHTML = "";
-            return;
-        }
+            if (!termo) {
+                resultadoDiv.innerHTML = "";
+                return;
+            }
 
-        const filtradas = buscaCache.filter(f =>
-            f.nome.toLowerCase().includes(termo)
-        );
+            const filtradas = buscaCache.filter(f =>
+                f.nome.toLowerCase().includes(termo)
+            );
 
-        renderBuscaGlobal(filtradas);
-    });
+            renderBuscaGlobal(filtradas);
+        });
+}
 
 function renderBuscaGlobal(fichas) {
     const div = document.getElementById("resultadoBusca");
     div.innerHTML = "";
 
     fichas.forEach(ficha => {
-
         const card = document.createElement("div");
         card.classList.add("card");
 
         const img = document.createElement("img");
         img.classList.add("preview");
 
-        // 🔥 AQUI A MÁGICA
         const src = ficha.dados?.foto?.valor;
         img.src = src || "https://via.placeholder.com/50";
 
@@ -59,25 +56,4 @@ function renderBuscaGlobal(fichas) {
 
         div.appendChild(card);
     });
-}
-
-export function initBusca(buscaCache) {
-
-    document.getElementById("buscaGlobal")
-        .addEventListener("input", (e) => {
-
-            const termo = e.target.value.toLowerCase();
-            const resultadoDiv = document.getElementById("resultadoBusca");
-
-            if (!termo) {
-                resultadoDiv.innerHTML = "";
-                return;
-            }
-
-            const filtradas = buscaCache.filter(f =>
-                f.nome.toLowerCase().includes(termo)
-            );
-
-            renderBuscaGlobal(filtradas);
-        });
 }

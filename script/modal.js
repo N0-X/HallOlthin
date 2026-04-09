@@ -1,12 +1,14 @@
-let callbackConfirmar = null;
-let usandoInput = false;
+const modalState = {
+    callback: null,
+    usandoInput: false
+};
 
 export function abrirModal(texto, onConfirm, usarInput = false) {
     document.getElementById("modalTexto").textContent = texto;
 
     const input = document.getElementById("modalInput");
 
-    usandoInput = usarInput;
+    modalState.usandoInput = usarInput;
 
     if (usarInput) {
         input.style.display = "block";
@@ -16,28 +18,29 @@ export function abrirModal(texto, onConfirm, usarInput = false) {
         input.style.display = "none";
     }
 
-    callbackConfirmar = onConfirm;
+    modalState.callback = onConfirm;
 
     document.getElementById("modalConfirm").classList.remove("hidden");
 }
 
-export function fecharModal() {
+function fecharModal() {
     document.getElementById("modalConfirm").classList.add("hidden");
 }
 
 export function initModal() {
     document.getElementById("btnConfirmar")
-    .addEventListener("click", () => {
-        const input = document.getElementById("modalInput");
+        .addEventListener("click", () => {
+            const input = document.getElementById("modalInput");
 
-        if (callbackConfirmar) {
-            callbackConfirmar(usandoInput ? input.value : null);
-        }
+            if (modalState.callback) {
+                modalState.callback(
+                    modalState.usandoInput ? input.value : null
+                );
+            }
 
-        fecharModal();
-    });
+            fecharModal();
+        });
 
     document.getElementById("btnCancelar")
         .addEventListener("click", fecharModal);
-
 }
