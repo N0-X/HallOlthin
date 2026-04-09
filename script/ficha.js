@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 localStorage.removeItem("pastaId");
 
                 // volta pro menu
-                window.location.href = "menu.html";
+                window.location.href = "index.html";
             });
 
         });
@@ -90,7 +90,7 @@ document.getElementById("btnVoltar")
         const dados = coletarDados();
         await atualizarFicha(fichaId, dados);
 
-        window.location.href = "menu.html";
+        window.location.href = "index.html";
     });
 
 // ==========================
